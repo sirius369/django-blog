@@ -13,7 +13,7 @@
 	                        <a class="post"href="{% url 'posts:post' post.pk %}">
 	                              <div>
 	                                    <h2>{{post.title|safe}}</h2>
-	                                    <p id="preview">{{post.preview_text|safe}}</p>
+	                                    <p id="preview">{{post.preview|safe}}</p>
 	                                    <p id="publish_info">Published on {{post.date|date:"d M Y"}} by {{post.user.username}}</p>
 	                              </div>
 	                        </a>
