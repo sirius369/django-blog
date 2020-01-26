@@ -21,8 +21,8 @@
 	<div class="login-popup-form" id="popup-login">
 		<form class="form-container" action="{% url 'users:auth' %}" method="post" id="login_form">
 			{% csrf_token %}
-			<input type="text" name="username" placeholder="Enter your username">
-			<input type="password" name="password" placeholder="Enter your password">
+			<input id="uname_field" type="text" name="username" placeholder="Enter your username">
+			<input id="pw_field" type="password" name="password" placeholder="Enter your password">
 			<input type="submit" name="submit" value="LOGIN">
 		</form>
 		<button class="btn_cancel" value="CLOSE" onclick="close_form()">CLOSE</button>
@@ -114,11 +114,12 @@
 				success: function(data){
 					if (data['logedin'] == true){
 						location = "{% url 'posts:post' post.pk %}";
-						document.getElementById("comment-form").style.display = "block";
 						user_auth = "True";
 						close_form();
 					}
-					else {
+					else if (data['logedin'] == false){
+						document.getElementById("uname_field").style.border = "1px solid red";
+						document.getElementById("pw_field").style.border = "1px solid red";
 						open_form();
 					}
 				},

@@ -35,7 +35,7 @@ class Comment(models.Model):
     text = models.CharField(max_length = 1000)
 
     def __str__(self):
-        return self.post
+        return self.post.title
 
 class Like(models.Model):
     post = models.ForeignKey(Post, on_delete = models.CASCADE)
