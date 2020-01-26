@@ -1,0 +1,398 @@
+body {
+      margin: 0;
+      height: auto !important;
+}
+
+.container {
+	width: 50%;
+	margin: auto;
+	overflow: hidden;
+}
+
+.container {
+      width: 50%;
+      margin: auto;
+      overflow: hidden;
+}
+
+nav {
+      height: 60px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+}
+
+#site_name {
+      font-family: "Indie Flower", cursive;
+      position: absolute;
+      font-size: 45px;
+      font-weight: bold;
+      margin-left: 80px;
+      float: left;
+
+}
+
+nav a {
+      /*font-family: "ZCOOL QingKe HuanYou", cursive;*/
+      font-family: "Bowlby One SC", cursive;
+      text-decoration: none;
+      font-size: 18px;
+      text-transform: uppercase;
+
+}
+
+nav a:hover {
+	opacity: 0.2;
+	transition: opacity 600ms linear;
+}
+
+nav ul {
+      position: absolute;
+      top: 0; bottom: 0;right: 0;
+      margin: auto;
+      height: 20px;
+      float: right;
+      display: flex;
+      list-style: none;
+      align-items: center;
+      margin-right: 80px;
+}
+
+nav li {
+      list-style-type: none;
+      margin-left: 40px;
+      vertical-align: middle;
+      text-align: center;
+}
+
+.nav-transparent {
+      background-color: transparent;
+      transition: background-color 800ms linear;
+}
+
+.nav-transparent a {
+      color: black;
+}
+
+.nav-colored a {
+      color:white;
+}
+
+.nav-colored {
+      background-color: black;
+      transition: background-color 800ms linear;
+}
+
+header {
+      display: flex;
+}
+
+#header_content {
+      text-align: center;
+      width: 60%;
+      height: 100%;
+      overflow: auto;
+}
+
+#content {
+      margin-top: 180px;
+      font-family: "Bowlby One SC", cursive;
+      font-weight: normal;
+	text-align: center;
+      width: 100%;
+      color: black;
+}
+
+#huge_welcome {
+      font-size: 40px;
+}
+
+#normal {
+      font-size: 24px;
+}
+
+.post {
+      font-family: "Noto Sans JP", sans-serif;
+      min-height: 90px;
+      width: 100%;
+      text-decoration: none;
+      color: black;
+}
+
+.post:hover{
+      opacity: 0.8;
+      color: blue;
+}
+
+#preview {
+      font-size: 18px;
+}
+
+#publish_info {
+      color: #383838;
+}
+
+#signup {
+      font-family: "Bowlby One SC", cursive;
+	margin-left: 10%;
+      margin-top: 150px;
+      width: 20%;
+      height: 80%;
+      font-weight: bold;
+}
+
+
+
+#login {
+      display: none;
+}
+
+.login_form input, .register_form input {
+
+      font-weight: bold;
+      height: 40px;
+      border: none;
+	border-bottom: 1px solid black;
+      margin-top: 20px;
+      width: 100%;
+}
+
+#signup input[type="submit"]{
+      width: 50%;
+      margin-left: 25%;
+	border: none;
+	background-color: green;
+}
+
+#register {
+      display: block;
+}
+
+#error_paragraph, #error_paragraph_register {
+	color: red;
+	font-size: 15px;
+	text-align: center;
+	font-weight: normal;
+}
+
+.select_signup {
+	font-family: "Bowlby One SC", cursive;
+      width: 100%;
+      margin-bottom: 40px;
+}
+
+.select_signup button {
+	font-family: "Bowlby One SC", cursive;
+      width: 49%;
+      height: 40px;
+      border: none;
+	background-color: white;
+}
+
+#signup-form {
+	width: 340px;
+	margin-top: 150px;
+	margin-right: 110px;
+	float:right;
+	color: white;
+}
+
+#signup-form input {
+	margin-top: 20px;
+	width: 320px;
+	color: black;
+	height: 45px;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+	background-color: #cccccc;
+	font-weight: bold;
+}
+
+.post-section{
+	font-family: "Noto Sans JP", sans-serif;
+	width: 100%;
+	border-bottom: 1px solid #cccccc;
+	margin-bottom: 20px;
+}
+
+.post-content {
+	width: 600px;
+	margin: auto;
+}
+
+#date-author-paragraph {
+	text-align: center;
+}
+
+.post-content h1 {
+	text-align: center;
+	font-size: 30px;
+}
+
+.post-title-date {
+	 text-align: center;
+}
+
+.post-title-date h1{
+	font-size: 100px;
+	color: black;
+	opacity: 0.9;
+}
+
+.post-title-date p {
+	font-size: 20px;
+	font-weight: bold;
+	color: black;
+}
+#user-options {
+	width: 50%;
+	margin-left: 18%;
+	display: inline-block;
+}
+
+
+#user-options p {
+	font-family: "Bowlby One SC", cursive;
+	display: inline;
+	color: green;
+}
+
+#user-options p, a{
+	text-decoration: none;
+	color: black;
+}
+
+#comments {
+	margin-top: 50px;
+	width: 50%;
+	margin-left: 22%;
+	margin-bottom: 150px;
+}
+
+.comment {
+	width: 100%;
+	margin-left: 10%;
+	margin-top: 20px;
+	min-height: 50px;
+	text-align: center;
+	border-bottom: 1px solid #cccccc;
+	display: flex;
+}
+
+.comment p{
+	font-family: "Noto Sans JP", sans-serif;
+	display: inline;
+}
+
+.comment-author{
+	color: blue;
+	font-weight: bold;
+	width: 20%;
+}
+
+.comment-text {
+	width: 80%;
+}
+
+.login-popup-form {
+	font-family: "Bowlby One SC", cursive;
+	display: none;
+	position: fixed;
+	bottom: 0;
+	max-width: 320px;
+	right: 56px;
+	border: 1px solid black;
+	background-color: white;
+	z-index: 9;
+}
+
+.form-container {
+	width: 300px;
+	padding: 10px;
+}
+
+.form-container input {
+	font-family: "Noto Sans JP", sans-serif;
+	font-weight: bold;
+	width: 100%;
+	height: 50px;
+	margin: 5px 0 22px 0;
+	color: black;
+	background-color: white;
+	border: none;
+	border-bottom: 1px solid black;
+}
+
+.form-container input[type="submit"]{
+	font-family: "Bowlby One SC", cursive;
+	border: none;
+}
+
+.btn_cancel {
+	font-family: "Bowlby One SC", cursive;
+	width: 300px;
+	margin-left: 10px;
+	margin-bottom: 20px;
+	background-color: red;
+	border: none;
+	height: 50px;
+}
+
+{box-sizing: border-box;}
+
+#comment-form{
+	font-family: "Noto Sans JP", sans-serif;
+	display: none;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	margin-left: 5%;
+	background: #cccccc;
+	min-height: 40px;
+}
+
+#comment-form input[type=text] {
+	font-family: "Noto Sans JP", sans-serif;
+	width: 90%;
+	min-height: 40px;
+	border: none;
+	border-bottom: 2px solid #cccccc;
+}
+
+#comment-form input[type=submit]{
+	font-family: "Bowlby One SC", cursive;
+	width: 9%;
+	height: 40px;
+	border: none;
+	background-color: #cccccc;
+}
+
+#older_posts_a {
+	text-decoration: none;
+	font-family: "Bowlby One SC", cursive;
+	float: right;
+	margin-top: 50px;
+	margin-bottom: 50px;
+	font-weight: bold;
+	font-size: 23px;
+}
+
+#older_posts_a:hover{
+	opacity: 0.3;
+	transition: opacity 1000ms linear;
+}
+
+#footer {
+	height: 70px;
+	padding-top: 40px;
+	background-color: black;
+	color: white;
+}
+
+#footer p {
+	text-align: center;
+}
+
+#all_posts {
+	margin-top: 100px;
+}

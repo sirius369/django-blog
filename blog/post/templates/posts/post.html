@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block logout_button %}
+	{% if user.is_authenticated %}
+		<a href="{% url 'users:logout' %}">Logout</a>
+	{% endif %}
+{% endblock %}
+{% block content %}
+	<section class="post-section">
+		<div style="background: url('{{post.thumbnail.url}}'); height: 700px; background-size: cover; margin: 0; padding-top: 20px;">
+			<div class="post-title-date">
+				<h1>{{post.title|safe}}</h1>
+				<p>Published on {{post.date|date:"M, d Y"}} by {{post.user.username}}</p>
+			</div>
+		</div>
+		<div class="post-content">
+            	{{post.content|safe}}
+		</div>
+	</section>
+	<div class="login-popup-form" id="popup-login">
+		<form class="form-container" action="{% url 'users:auth' %}" method="post" id="login_form">
+			{% csrf_token %}
+			<input type="text" name="username" placeholder="Enter your username">
+			<input type="password" name="password" placeholder="Enter your password">
+			<input type="submit" name="submit" value="LOGIN">
+		</form>
+		<button class="btn_cancel" value="CLOSE" onclick="close_form()">CLOSE</button>
+	</div>
+	<section id="user-options">
+		<div class="container">
+			<a href="" id="like_button"><i id="like-button" class="fa-heart"></i></a>
+			<p id="number_of_likes">{{post.number_of_likes|safe}}</p>
+			<a href="" id="comment-button"><i class="fas fa-comment"></i></a>
+			<p id="number_of_comments">{{post.number_of_comments|safe}}</p>
+		</div>
+	</section>
+	<section id="comments">
+		<div id="comments-div">
+			<div id="comment-form">
+				<form id="form_comment" class="form-comment" action="{% url 'posts:addcomment' post.pk %}" method="post">
+					{% csrf_token %}
+					<input id="comment_text_input" type="text" name="comment_text" value="" placeholder="Comment">
+					<input id="comment-submit-button" type="submit" name="done-button" value="Done">
+				</form>
+			</div>
+			<div class="contasiner">
+				{% for comment in comments %}
+					<div class="comment">
+						<div class="comment-author"><p>{{comment.user}} says:</p></div>
+						<div class="comment-text"><p>{{comment.text}}</p></div>
+						{% if comment.user == user %}
+							<a href="{% url 'posts:delete' comment.pk %}"><i class="fas fa-trash-alt"></i></a>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+{% endblock %}
+{% block custom_script %}
+	<script type="text/javascript">
+		var user_auth = "{{user.is_authenticated}}";
+		var is_liked = "{{is_liked}}";
+		var like_button = document.getElementById("like-button");
+		var like_count = document.getElementById("number_of_likes");
+		console.log(is_liked);
+		if (is_liked == "False"){
+			like_button.classList.add('far');
+			like_button.classList.remove('fas');
+		}else {
+			like_button.classList.add('fas');
+			like_button.classList.remove('far');
+		}
+		function open_form(){
+			document.getElementById("popup-login").style.display = "block";
+		}
+		function close_form(){
+			document.getElementById("popup-login").style.display = "none";
+		}
+		$(document).on('click', '#comment-submit-button', function(e){
+			e.preventDefault();
+			var comment = document.getElementById("comment_text_input");
+			if(/[a-zA-Z]/.test(comment.value) || /\d/.test(comment.value)){
+				var data = new FormData($('#form_comment')[0]);
+				$.ajax({
+					url: "{% url 'posts:addcomment' post.pk %}",
+					type: "POST",
+					data: data,
+					cache: data,
+					processData: false,
+					contentType: false,
+					success: function(data){
+						$('#comments').load("{% url 'posts:post' post.pk%}" + ' #comments-div');
+						var noc = document.getElementById('number_of_comments').innerHTML;
+						document.getElementById('number_of_comments').innerHTML = parseInt(noc) + 1;
+					}
+				});
+			}else {
+				comment.style.border = "1px solid red";
+			}
+		});
+		$('#login_form').on('submit', function(e){
+			e.preventDefault();
+			var data = new FormData($('#login_form')[0]);
+			$.ajax({
+				url: "{% url 'users:auth' %}",
+				type: "POST",
+				data: data,
+				cache: data,
+				dataType: 'json',
+				processData: false,
+				contentType: false,
+				success: function(data){
+					if (data['logedin'] == true){
+						location = "{% url 'posts:post' post.pk %}";
+						document.getElementById("comment-form").style.display = "block";
+						user_auth = "True";
+						close_form();
+					}
+					else {
+						open_form();
+					}
+				},
+				error: function(data){
+					alert("Something went wrong.")
+				}
+			});
+		});
+		$('#comment-button').on('click', function(e){
+			e.preventDefault();
+			if (user_auth == "True"){
+				document.getElementById("comment-form").style.display = "block";
+			}else if (user_auth = "False"){
+				open_form();
+			}
+		});
+		$('#like_button').on('click', function(e){
+			e.preventDefault();
+			var data = {
+				key: "csrfmiddlewaretoken",
+				value: "{{csrf_token}}"
+			};
+			if (user_auth == "True"){
+				$.ajax({
+					url: "{% url 'posts:like' post.pk %}",
+					data: data,
+					type: "POST",
+					success: function(data){
+						var likes = document.getElementById('number_of_likes').innerHTML;
+						if (data['unliked'] == true){
+							like_count.innerHTML = parseInt(likes) - 1;
+							like_button.classList.add('far');
+							like_button.classList.remove('fas');
+						}else if (data['liked'] == true){
+							like_count.innerHTML = parseInt(likes) + 1;
+							like_button.classList.add('fas');
+							like_button.classList.remove('far');
+						}
+					}
+				});
+			}else if (user_auth = "False"){
+				open_form();
+			}
+		});
+
+	</script>
+{% endblock %}

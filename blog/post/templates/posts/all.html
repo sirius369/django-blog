@@ -1,0 +1,85 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block logout_button %}
+	{% if user.is_authenticated %}
+		<a id="logout_button" href="{% url 'users:logout' %}">Logout</a>
+	{% endif %}
+{% endblock %}
+{% block content %}
+	<main>
+		<section id="all_posts">
+	            <div class="container">
+	                  {% for post in posts %}
+	                        <a class="post"href="{% url 'posts:post' post.pk %}">
+	                              <div>
+	                                    <h2>{{post.title|safe}}</h2>
+	                                    <p id="preview">{{post.preview_text|safe}}</p>
+	                                    <p id="publish_info">Published on {{post.date|date:"d M Y"}} by {{post.user.username}}</p>
+	                              </div>
+	                        </a>
+	                  {% endfor %}
+	            </div>
+	      </section>
+	</main>
+{% endblock %}
+
+{% block custom_script %}
+      <script type="text/javascript">
+            function remove_signup(){
+                  document.getElementById("signup").style.display = "none";
+                  document.getElementById("signup").style.width = "0";
+                  document.getElementById("header_content").style.width = "100%";
+                  document.getElementById("content").style.width = "100%";
+            }
+            {% if user.is_authenticated %}
+                  remove_signup();
+            {% endif %}
+            $('#login_form').on('submit', function(e){
+			e.preventDefault();
+			var data = new FormData($('#login_form')[0]);
+			$.ajax({
+				url: "{% url 'users:auth' %}",
+				type: "POST",
+				data: data,
+				cache: data,
+				dataType: 'json',
+				processData: false,
+				contentType: false,
+				success: function(data){
+					if (data['logedin'] == "True"){
+						remove_signup();
+					}
+					else if (data['wrong_credentials'] == "True"){
+                                    document.getElementById("uname_input").style.border = "1px solid red";
+                                    document.getElementById("pw_input").style.border = "1px solid red";
+                                    document.getElementById("error_paragraph").innerHTML = "Wrong credentials";
+					}
+				},
+				error: function(data){
+					alert("Something went wrong.")
+				}
+			});
+		});
+            $('#user_reg_form').on('submit', function(e){
+      		e.preventDefault();
+                  var data = new FormData($('#user_reg_form')[0]);
+      		$.ajax({
+      			url : "{% url 'users:register' %}",
+      			type: "POST",
+      			data: data,
+      			cache: data,
+      			dataType: 'json',
+      			processData: false,
+      			contentType: false,
+      			success: function(data){
+      				if (data['success'] == "true"){
+      					remove_signup();
+      				}else {
+                                    console.log(data['error'])
+                                    document.getElementById("error_paragraph_register").innerHTML = data['error'];
+      				}
+      			},
+      		});
+      	});
+      </script>
+{% endblock %}

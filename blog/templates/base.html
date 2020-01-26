@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+      <meta charset="utf-8">
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link href="https://fonts.googleapis.com/css?family=Bowlby+One+SC|Indie+Flower|Noto+Sans+JP&display=swap" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://kit.fontawesome.com/d708f66f0d.js" crossorigin="anonymous"></script>
+      <title>Post</title>
+</head>
+      <body>
+		<nav class="nav-transparent" id="navbar">
+                  <a id="site_name" href="#">Site name</a>
+                  <ul>
+                        <li>
+                              <a href="{% url 'posts:home' %}">Home</a>
+                        </li>
+				<li>{% block logout_button %}{% endblock %}</li>
+                  </ul>
+            </nav>
+      	{% block content %}{% endblock %}
+		<footer id="footer">
+			<p>Copyright &copy; 2020 your site</p>
+		</footer>
+      </body>
+	<script type="text/javascript">
+		var navbar = document.getElementById("navbar");
+	      window.onscroll = function(){
+	            "use strict";
+	            if (document.documentElement.scrollTop >= 200) {
+	                  navbar.classList.add("nav-colored");
+	                  navbar.classList.remove("nav-transparent");
+	            }else {
+	                  navbar.classList.add("nav-transparent");
+	                  navbar.classList.remove("nav-colored");
+	            }
+	      }
+	            function show_login(){
+	                  document.getElementById("login").style.display = "block";
+	                  document.getElementById("register").style.display = "none";
+	            }
+	            function show_register(){
+	                  document.getElementById("login").style.display = "none";
+	                  document.getElementById("register").style.display = "block";
+	            }
+	</script>
+      {% block custom_script %}{% endblock %}
+</html>
