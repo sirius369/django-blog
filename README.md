@@ -14,26 +14,13 @@ Probably there is a better way to make this kind of website, but I didn't bother
 
 If you have any questions, and or if you find any bugs, or you have idea what to add to this feel free to tell.
 
-This use Django 2.2.9
-First you need to activate virtualenv
-~source blog/bin/activate
-After that navigate to blog folder which contains manage.py file
+This use Django 2.2.9 and django-ckeditor 5
 
-#If you really don't know anything about django here it is simpler example
 
-If this is a structure of folder blog then navigate to this blog folder inside of blog.
-It's marked with -.
----blog
-   --[blog-
-   --[bin
-   --[include
-   --[lib
-   --[share
-   ---pyvenv.cfg
-   ---README.md
+First you need to install Django 2.2.9 and django-ckeditor, to do that you need to type 
+pip3 install -r requirements.txt or pip install -r requirements.txt
 
-Then type command python3 manage.py runserver #For linux
-and python manage.py runserver #For windows
+Then navigate to blog folder and type command python3 manage.py runserver or python manage.py runserver
 And that's it you should see on which address is website running and try it.
 There are two users created superuser with username admin and password admin12345 
 And two normal users one have username test23 and password 123456
