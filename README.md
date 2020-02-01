@@ -22,11 +22,11 @@ pip3 install -r requirements.txt or pip install -r requirements.txt
 
 Then navigate to blog folder and type command python3 manage.py runserver or python manage.py runserver
 And that's it you should see on which address is website running and try it.
-There are two users created superuser with username admin and password admin12345 
+There are two users created, superuser with username admin and password admin12345 
 And two normal users one have username test23 and password 123456
-You can add posts with only with admin user through admin page.
+You can add posts only with admin user through admin page.
 If you are running on for example localhost:8000 then go to localhost:8000/admin and login.
-Then go to Posts and hit Add post button. And there it is. First you select user, that shoud be automatically but it's not, if left it that way just for testing.
+Then go to Posts and hit Add post button. And there it is. First you select user, that shoud be automatically but it's not, I left it that way just for testing.
 Don't change number of likes or comments. Post thumbnail is first huge image that appears at the top of post you are reading.
 Title is place where you put title of your post, and preview field is field to insert text you want to use as post previews, and that is displayed 
 in home page where are few posts listed, and in page where are all posts listed. Then there is a huge text area where you can
