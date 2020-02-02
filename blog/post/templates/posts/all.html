@@ -6,6 +6,20 @@
 	{% endif %}
 {% endblock %}
 {% block content %}
+	<div class="filters">
+		<p id="show_filters" onclick="showFilters()">Filter tag</p>
+		<div id="filter">
+			<form class="" action="{% url 'posts:filter' %}" method="GET">
+				<input type="checkbox" name="filter[]" value="science">Science
+				<input type="checkbox" name="filter[]" value="programming">Programming
+				<input type="checkbox" name="filter[]" value="cars">Cars
+				<input type="checkbox" name="filter[]" value="space">Space
+				<input type="checkbox" name="filter[]" value="tech">Tech
+				<input type="checkbox" name="filter[]" value="traveling">Traveling
+				<input type="submit" name="submit" id="filters_submit" value="Filter">
+			</form>
+		</div>
+	</div>
 	<main>
 		<section id="all_posts">
 	            <div class="container">
@@ -25,6 +39,13 @@
 
 {% block custom_script %}
       <script type="text/javascript">
+		function showFilters(){
+			var filter = document.getElementById("filter");
+			var filter_button = document.getElementById("show_filters");
+			filter.style.display = "block";
+			filter_button.style.display = "none";
+		}
+
             function remove_signup(){
                   document.getElementById("signup").style.display = "none";
                   document.getElementById("signup").style.width = "0";

@@ -400,5 +400,44 @@ header {
 }
 
 #all_posts {
-	margin-top: 100px;
+	margin-top: 150px;
+}
+
+.filters{
+      width: 80%;
+      margin: auto;
+      height: 20px;
+      margin-top: 120px;
+}
+
+.filters p {
+      display: inline-block;
+}
+
+
+#filter {
+      font-family: "Noto Sans JP", sans-serif;
+      width: 50%;
+      display: none;
+      margin: auto;
+}
+
+#button_filter {
+      font-family: "Noto Sans JP", sans-serif;
+      width: 50%;
+      margin: auto;
+}
+
+#filters_submit, #show_filters  {
+      font-family: "Bowlby One SC", cursive;
+      border: none;
+      background-color: white;
+      cursor: pointer;
+      color: black;
+      font-size: 20px;
+      float: right;
+}
+
+#show_filters {
+      width: 10%;
 }

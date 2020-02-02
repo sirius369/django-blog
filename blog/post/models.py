@@ -25,6 +25,7 @@ class Post(models.Model):
     last_edit = models.DateField(auto_now = True, auto_now_add = False)
     number_of_likes = models.IntegerField(default = 0)
     number_of_comments = models.IntegerField(default = 0)
+    tags = models.CharField(max_length = 1000)
 
     def __str__(self):
         return self.title

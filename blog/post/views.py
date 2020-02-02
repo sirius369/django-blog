@@ -19,6 +19,23 @@ def all(request):
     context = {'posts' : posts}
     return render(request, 'posts/all.html', context)
 
+def filter(request):
+    requested_filters = request.GET.getlist('filter[]')
+    posts = Post.objects.all()
+    filtered_posts = {}
+    matching = 0
+    for post in posts:
+        post_tags = post.tags.split(",")
+        for filter in requested_filters:
+            if filter in post_tags:
+                matching += 1
+        if matching >= 1:
+            filtered_posts[post] = matching
+        matching = 0
+    new_list = sorted(filtered_posts, key = filtered_posts.get, reverse = True)
+    context = {'posts' : new_list}
+    return render(request, 'posts/all.html', context)
+
 def post(request, post_id):
     selected_post = Post.objects.get(pk = post_id)
     selected_post.number_of_comments = len(Comment.objects.filter(post = selected_post.id))
