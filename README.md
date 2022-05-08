@@ -1,8 +1,5 @@
 # About and how to use
 
-This is my first repository on github, my first project ever on internet, so if there is some mistakes please sorry for that, and sorry for bad english.
-Idea was to play with django and create simple blog site
-
 It's not finished yet, I need to add page for adding post, and I need to add option to select color of post title,
 because right now is black and sometimes it can cause troubles with post thumbnail, if thumbnail is dark then you can't clearly see
 post publisher and date. Right now you can add post through admin only with ckeditor.
